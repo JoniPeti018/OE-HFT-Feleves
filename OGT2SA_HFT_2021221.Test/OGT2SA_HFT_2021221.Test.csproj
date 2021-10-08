@@ -4,4 +4,10 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OGT2SA_HFT_2021221.Logic\OGT2SA_HFT_2021221.Logic.csproj" />
+    <ProjectReference Include="..\OGT2SA_HFT_2021221.Models\OGT2SA_HFT_2021221.Models.csproj" />
+    <ProjectReference Include="..\OGT2SA_HFT_2021221.Repository\OGT2SA_HFT_2021221.Repository.csproj" />
+  </ItemGroup>
+
 </Project>
