@@ -16,12 +16,19 @@ namespace OGT2SA_HFT_2021221.Models
         [Required]
         public string founded { get; set; }
         [Required]
+        public string studio_name { get; set; }
+        [Required]
         public string founder { get; set; }
         [Required]
         public string headquarters { get; set; }
         [NotMapped]
-        public virtual Anime Anime { get; set; }
+        public virtual ICollection<Anime> Animes { get; set; }
         [NotMapped]
-        public virtual Character Character { get; set; }
+        public virtual ICollection<Character> Characters { get; set; }
+        public Studio()
+        {
+            Animes = new HashSet<Anime>();
+            Characters = new HashSet<Character>();
+        }
     }
 }

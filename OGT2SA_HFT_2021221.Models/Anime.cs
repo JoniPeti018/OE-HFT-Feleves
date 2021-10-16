@@ -20,17 +20,13 @@ namespace OGT2SA_HFT_2021221.Models
         public string aired { get; set; }
         [Required]
         public string source { get; set; }
-
-
         [NotMapped]
         public virtual ICollection<Character> Characters { get; set; }
-
         [NotMapped]
-        public virtual ICollection<Studio> Studios { get; set; }
+        public virtual Studio Studios { get; set; }
         public Anime()
         {
             Characters = new HashSet<Character>();
-            Studios = new HashSet<Studio>();
         }
     }
 }

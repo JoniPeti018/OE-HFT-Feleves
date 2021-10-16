@@ -18,7 +18,7 @@ namespace OGT2SA_HFT_2021221.Models
         [ForeignKey(nameof(Studio))]
         public int studio_id { get; set; }
         [Required]
-        public string character_name { get; set; }
+        public string main_character { get; set; }
         [Required]
         public string main_voice { get; set; }
         [Required]
@@ -26,14 +26,8 @@ namespace OGT2SA_HFT_2021221.Models
         [Required]
         public string support_voice { get; set; }
         [NotMapped]
-        public virtual ICollection<Anime> Animes { get; set; }
-
+        public virtual Anime Animes { get; set; }
         [NotMapped]
-        public virtual ICollection<Studio> Studios { get; set; }
-        public Character()
-        {
-            Studios = new HashSet<Studio>();
-            Animes = new HashSet<Anime>();
-        }
+        public virtual Studio Studios { get; set; }
     }
 }
