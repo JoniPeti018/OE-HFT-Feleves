@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace OGT2SA_HFT_2021221.Models
 {
@@ -20,5 +21,16 @@ namespace OGT2SA_HFT_2021221.Models
         [Required]
         public string source { get; set; }
 
+
+        [NotMapped]
+        public virtual ICollection<Character> Characters { get; set; }
+
+        [NotMapped]
+        public virtual ICollection<Studio> Studios { get; set; }
+        public Anime()
+        {
+            Characters = new HashSet<Character>();
+            Studios = new HashSet<Studio>();
+        }
     }
 }

@@ -19,5 +19,9 @@ namespace OGT2SA_HFT_2021221.Models
         public string founder { get; set; }
         [Required]
         public string headquarters { get; set; }
+        [NotMapped]
+        public virtual Anime Anime { get; set; }
+        [NotMapped]
+        public virtual Character Character { get; set; }
     }
 }

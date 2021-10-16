@@ -25,7 +25,15 @@ namespace OGT2SA_HFT_2021221.Models
         public string support_character { get; set; }
         [Required]
         public string support_voice { get; set; }
+        [NotMapped]
+        public virtual ICollection<Anime> Animes { get; set; }
 
-
+        [NotMapped]
+        public virtual ICollection<Studio> Studios { get; set; }
+        public Character()
+        {
+            Studios = new HashSet<Studio>();
+            Animes = new HashSet<Anime>();
+        }
     }
 }
