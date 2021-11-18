@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OGT2SA_HFT_2021221.Data
 {
-    class AnimeDataDbContext : DbContext
+    public class AnimeDataDbContext : DbContext
     {
         public virtual DbSet<Anime> Animes { get; set; }
         public virtual DbSet<Character> Characters { get; set; }
