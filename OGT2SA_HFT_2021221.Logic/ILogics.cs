@@ -12,7 +12,7 @@ namespace OGT2SA_HFT_2021221.Logic
         T GetOne(int id);
         IEnumerable<T> GetAll();
     }
-    public interface IAnimeRepository : ILogics<Anime>
+    public interface IAnimeLogic : ILogics<Anime>
     {
         //create
         void CreateAnime(int anime_id, int studio_id, string anime_name, string type, string aired, string source);
@@ -25,7 +25,7 @@ namespace OGT2SA_HFT_2021221.Logic
         //delete
         void DeleteAnime(int anime_id);
     }
-    public interface ICharacterRepository : ILogics<Character>
+    public interface ICharacterLogic : ILogics<Character>
     {
         //create
         void CreateCharacter(int character_id, int anime_id, int studio_id, string main_character, string main_voice, string support_character, string support_voice);
@@ -38,7 +38,7 @@ namespace OGT2SA_HFT_2021221.Logic
         //delete
         void DeleteCharacter(int character_id);
     }
-    public interface IStudioRepository : ILogics<Studio>
+    public interface IStudioLogic : ILogics<Studio>
     {
         //create
         void CreateStudio(int studio_id, string founded, string studio_name, string founder, string headquarters);
