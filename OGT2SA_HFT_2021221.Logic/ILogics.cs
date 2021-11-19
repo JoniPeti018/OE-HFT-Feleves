@@ -7,12 +7,7 @@ using System.Threading.Tasks;
 
 namespace OGT2SA_HFT_2021221.Logic
 {
-    public interface ILogic<T> where T : class
-    {
-        T GetOne(int id);
-        IEnumerable<T> GetAll();
-    }
-    public interface IAnimeLogic : ILogic<Anime>
+    public interface IAnimeLogic
     {
         //create
         void CreateAnime(int anime_id, int studio_id, string anime_name, string type, string aired, string source);
@@ -25,7 +20,7 @@ namespace OGT2SA_HFT_2021221.Logic
         //delete
         void DeleteAnime(int anime_id);
     }
-    public interface ICharacterLogic : ILogic<Character>
+    public interface ICharacterLogic
     {
         //create
         void CreateCharacter(int character_id, int anime_id, int studio_id, string main_character, string main_voice, string support_character, string support_voice);
@@ -38,7 +33,7 @@ namespace OGT2SA_HFT_2021221.Logic
         //delete
         void DeleteCharacter(int character_id);
     }
-    public interface IStudioLogic : ILogic<Studio>
+    public interface IStudioLogic
     {
         //create
         void CreateStudio(int studio_id, string founded, string studio_name, string founder, string headquarters);
