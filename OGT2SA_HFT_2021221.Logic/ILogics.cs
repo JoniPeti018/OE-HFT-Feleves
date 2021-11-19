@@ -46,4 +46,5 @@ namespace OGT2SA_HFT_2021221.Logic
         //delete
         void DeleteStudio(int studio_id);
     }
+
 }
