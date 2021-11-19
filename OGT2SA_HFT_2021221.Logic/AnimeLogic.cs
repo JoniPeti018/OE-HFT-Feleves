@@ -16,14 +16,17 @@ namespace OGT2SA_HFT_2021221.Logic
         {
             this.animeRepository = animeRepository;
         }
+
         public void CreateAnime(int anime_id, int studio_id, string anime_name, string type, string aired, string source)
         {
             animeRepository.CreateAnime(anime_id, studio_id, anime_name, type, aired, source);
         }
+
         public void DeleteAnime(int anime_id)
         {
             animeRepository.DeleteAnime(anime_id);
         }
+
         public IEnumerable<Anime> ReadAllAnime()
         {
             return animeRepository.ReadAllAnime();
