@@ -23,18 +23,22 @@ namespace OGT2SA_HFT_2021221.Logic
 
         public void CreateAnime(int anime_id, int studio_id, string anime_name, string type, string aired, string source)
         {
-            var temp = from animes in animeRepository.GetAll() where animes.anime_id == anime_id select animes.anime_id;
-            if (temp.Count() > 0)
-            {
-                throw new ArgumentException("Already exists!");
-            }
             if (String.IsNullOrEmpty(anime_id.ToString()) || anime_name == null || type == null || aired == null || source == null || String.IsNullOrEmpty(studio_id.ToString()))
             {
                 throw new ArgumentException("Value cannot be null!");
             }
             else
             {
-                animeRepository.CreateAnime(anime_id, studio_id, anime_name, type, aired, source);
+                var temp = from animes in animeRepository.GetAll() where animes.anime_id == anime_id select animes.anime_id;
+                if (temp.Count() > 0)
+                {
+                    throw new ArgumentException("Already exists!");
+                }
+                else
+                {
+                    animeRepository.CreateAnime(anime_id, studio_id, anime_name, type, aired, source);
+                }
+
             }
         }
 
@@ -80,7 +84,7 @@ namespace OGT2SA_HFT_2021221.Logic
         {
             //Animek neve ahol a foszereplo neve...
             var q1 = from x in characterRepository.GetAll()
-                     where x.main_voice == name
+                     where x.main_character == name
                      select x.anime_id;
             var q2 = from x in animeRepository.GetAll()
                      where q1.Contains(x.anime_id)
@@ -97,7 +101,7 @@ namespace OGT2SA_HFT_2021221.Logic
             //Studio neve ahol az anime neve...
             var q1 = from x in animeRepository.GetAll()
                      where x.anime_name == name
-                     select x.anime_id;
+                     select x.studio_id;
             var q2 = from x in studioRepository.GetAll()
                      where q1.Contains(x.studio_id)
                      select x.studio_name;
@@ -108,7 +112,7 @@ namespace OGT2SA_HFT_2021221.Logic
             }
             return Studios;
         }
-        public IEnumerable<KeyValuePair<string,string>> AnimeNameCharacterNameWhereSource(string source)
+        public IEnumerable<KeyValuePair<string, string>> AnimeNameCharacterNameWhereSource(string source)
         {
             //Írjuk ki annak az Animének a nevét és foszereplojenek a nevét, ahol az anime forrása: Light Novel
             var q1 = from x in characterRepository.GetAll()
@@ -134,7 +138,7 @@ namespace OGT2SA_HFT_2021221.Logic
             }
             return Characters;
         }
-        public IEnumerable<string> AiredWhereStudioName(string studio) 
+        public IEnumerable<string> AiredWhereStudioName(string studio)
         {
             //Adés kezdete, ahol a stúdió neve...
             var q1 = from x in studioRepository.GetAll()
@@ -142,7 +146,7 @@ namespace OGT2SA_HFT_2021221.Logic
                      select x.studio_id;
             var q2 = from x in animeRepository.GetAll()
                      where q1.Contains(x.studio_id)
-                     select x.anime_name;
+                     select x.aired;
             List<string> Aired = new List<string>();
             foreach (var item in q2)
             {

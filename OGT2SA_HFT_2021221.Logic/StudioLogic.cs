@@ -17,18 +17,21 @@ namespace OGT2SA_HFT_2021221.Logic
         }
         public void CreateStudio(int studio_id, string founded, string studio_name, string founder, string headquarters)
         {
-            var temp = from studios in studioRepository.GetAll() where studios.studio_id == studio_id select studios.studio_id;
-            if (temp.Count() > 0)
-            {
-                throw new ArgumentException("Already exists!");
-            }
-            if (String.IsNullOrEmpty(studio_id.ToString()) || founded==null ||studio_name==null ||founder==null || headquarters == null)
+            if (String.IsNullOrEmpty(studio_id.ToString()) || founded == null || studio_name == null || founder == null || headquarters == null)
             {
                 throw new ArgumentException("Value cannot be null!");
             }
             else
             {
-                studioRepository.CreateStudio(studio_id, founded, studio_name, founder, headquarters);
+                var temp = from studios in studioRepository.GetAll() where studios.studio_id == studio_id select studios.studio_id;
+                if (temp.Count() > 0)
+                {
+                    throw new ArgumentException("Already exists!");
+                }
+                else
+                {
+                    studioRepository.CreateStudio(studio_id, founded, studio_name, founder, headquarters);
+                }
             }
         }
 
