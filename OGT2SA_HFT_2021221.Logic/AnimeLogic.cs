@@ -23,12 +23,33 @@ namespace OGT2SA_HFT_2021221.Logic
 
         public void CreateAnime(int anime_id, int studio_id, string anime_name, string type, string aired, string source)
         {
-            animeRepository.CreateAnime(anime_id, studio_id, anime_name, type, aired, source);
+            var temp = from animes in animeRepository.GetAll() where animes.anime_id == anime_id select animes.anime_id;
+            if (temp.Count() > 0)
+            {
+                throw new ArgumentException("Already exists!");
+            }
+            if (String.IsNullOrEmpty(anime_id.ToString()) || anime_name == null || type == null || aired == null || source == null || String.IsNullOrEmpty(studio_id.ToString()))
+            {
+                throw new ArgumentException("Value cannot be null!");
+            }
+            else
+            {
+                animeRepository.CreateAnime(anime_id, studio_id, anime_name, type, aired, source);
+            }
         }
 
         public void DeleteAnime(int anime_id)
         {
-            animeRepository.DeleteAnime(anime_id);
+            try
+            {
+                ReadAnime(anime_id);
+                animeRepository.DeleteAnime(anime_id);
+            }
+            catch (Exception)
+            {
+
+                throw new KeyNotFoundException();
+            }
         }
 
         public IEnumerable<Anime> ReadAllAnime()
@@ -38,12 +59,21 @@ namespace OGT2SA_HFT_2021221.Logic
 
         public Anime ReadAnime(int anime_id)
         {
-            return animeRepository.ReadAnime(anime_id);
+            var temp = from animes in animeRepository.GetAll() where animes.anime_id == anime_id select animes.anime_id;
+            if (temp.Count() > 0)
+            {
+                return animeRepository.ReadAnime(anime_id);
+            }
+            else
+            {
+                throw new KeyNotFoundException();
+            }
         }
 
         public void UpdateAnime(int anime_id, int studio_id, string anime_name, string type, string aired, string source)
         {
-            animeRepository.UpdateAnime(anime_id, studio_id, anime_name, type, aired, source);
+            DeleteAnime(anime_id);
+            CreateAnime(anime_id, studio_id, anime_name, type, aired, source);
         }
 
         public IEnumerable<string> AnimesWhereCharacterName(string name)
