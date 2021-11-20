@@ -88,6 +88,37 @@ namespace OGT2SA_HFT_2021221.Logic
                      select new KeyValuePair<string, string>(joineditem.anime_name, joineditem.main_character);
             return q1;
         }
-
+        public IEnumerable<string> CharacterNameWhereStudio(string studio)
+        {
+            //Karakterek neve, ahol a stúdió...
+            var q1 = from x in studioRepository.GetAll()
+                     where x.studio_name == studio
+                     select x.studio_id;
+            var q2 = from x in characterRepository.GetAll()
+                     where q1.Contains(x.studio_id)
+                     select x.main_character;
+            List<string> Characters = new List<string>();
+            foreach (var item in q2)
+            {
+                Characters.Add(item);
+            }
+            return Characters;
+        }
+        public IEnumerable<string> AiredWhereStudioName(string studio) 
+        {
+            //Adés kezdete, ahol a stúdió neve...
+            var q1 = from x in studioRepository.GetAll()
+                     where x.studio_name == studio
+                     select x.studio_id;
+            var q2 = from x in animeRepository.GetAll()
+                     where q1.Contains(x.studio_id)
+                     select x.anime_name;
+            List<string> Aired = new List<string>();
+            foreach (var item in q2)
+            {
+                Aired.Add(item);
+            }
+            return Aired;
+        }
     }
 }
