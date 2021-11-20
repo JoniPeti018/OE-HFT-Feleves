@@ -7,7 +7,6 @@ using System.Linq;
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using OGT2SA_HFT_2021221.Data;
 
 namespace OGT2SA_HFT_2021221.Test
 {
@@ -102,17 +101,15 @@ namespace OGT2SA_HFT_2021221.Test
             };
             Assert.That(animeLogic.AiredWhereStudioName(studio), Is.EqualTo(exp));
         }
-        [Test]
-        public void DataBaseTest()
+        [TestCase(20)]
+        public void AnimeDeleteExceptionTest(int anime_id)
         {
-            AnimeDataDbContext ctx = new AnimeDataDbContext();
-            Assert.That(ctx.Animes, Is.Not.Null);
+            Assert.That(() => animeLogic.DeleteAnime(anime_id), Throws.TypeOf<KeyNotFoundException>());
         }
-        [Test]
-        public void DatabaseAnimeCountEqual11()
+        [TestCase(20, 2, "Mahouka Koukou no Rettousei", "TV", "2021.04.11", "Light Novel")]
+        public void AnimeUpdateException(int anime_id, int studio_id, string anime_name, string type, string aired, string source)
         {
-            AnimeDataDbContext ctx = new AnimeDataDbContext();
-            Assert.That(ctx.Animes.Count(), Is.EqualTo(11));
+            Assert.That(() => animeLogic.UpdateAnime(anime_id, studio_id, anime_name, type, aired, source), Throws.TypeOf < KeyNotFoundException>());
         }
     }
 }
