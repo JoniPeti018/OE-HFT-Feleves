@@ -14,7 +14,7 @@ namespace OGT2SA_HFT_2021221.Logic
         IAnimeRepository animeRepository;
         ICharacterRepository characterRepository;
         IStudioRepository studioRepository;
-        public AnimeLogic(IAnimeRepository animeRepository, ICharacterRepository characterRepository, StudioRepository studioRepository)
+        public AnimeLogic(IAnimeRepository animeRepository, ICharacterRepository characterRepository, IStudioRepository studioRepository)
         {
             this.animeRepository = animeRepository;
             this.characterRepository = characterRepository;
