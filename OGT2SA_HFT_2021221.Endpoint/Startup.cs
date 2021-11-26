@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OGT2SA_HFT_2021221.Logic;
+using OGT2SA_HFT_2021221.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,13 @@ namespace OGT2SA_HFT_2021221.Endpoint
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers();
+            services.AddTransient<IAnimeLogic, AnimeLogic>();
+            services.AddTransient<ICharacterLogic, CharacterLogic>();
+            services.AddTransient<IStudioLogic, StudioLogic>();
+            services.AddTransient<IAnimeRepository, AnimeRepository>();
+            services.AddTransient<ICharacterRepository, CharacterRepository>();
+            services.AddTransient<IStudioRepository, StudioRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -27,10 +36,7 @@ namespace OGT2SA_HFT_2021221.Endpoint
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
         }
     }

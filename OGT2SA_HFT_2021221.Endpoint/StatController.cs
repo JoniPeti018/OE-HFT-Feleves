@@ -23,35 +23,30 @@ namespace OGT2SA_HFT_2021221.Endpoint
             this.studioLogic = studioLogic;
         }
 
-        // GET: stat/driversofateam
         [HttpGet]
         public IEnumerable<string> AnimesWhereCharacterName(string name)
         {
             return animeLogic.AnimesWhereCharacterName(name);
         }
 
-        // GET: stat/teamchiefbydrivers
         [HttpGet]
         public IEnumerable<string> StudiosNameWhereAnimeName(string name)
         {
             return animeLogic.StudiosNameWhereAnimeName(name);
         }
 
-        // GET: stat/avgage
         [HttpGet]
         public IEnumerable<KeyValuePair<string, string>> AnimeNameCharacterNameWhereSource(string source)
         {
             return animeLogic.AnimeNameCharacterNameWhereSource(source);
         }
 
-        // GET: stat/teamwins
         [HttpGet]
         public IEnumerable<string> CharacterNameWhereStudio(string studio)
         {
             return animeLogic.CharacterNameWhereStudio(studio);
         }
 
-        // GET: stat/teamsbymotor
         [HttpGet]
         public IEnumerable<string> AiredWhereStudioName(string studio)
         {
