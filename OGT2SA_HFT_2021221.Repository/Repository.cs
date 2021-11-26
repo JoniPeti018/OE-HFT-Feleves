@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OGT2SA_HFT_2021221.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace OGT2SA_HFT_2021221.Repository
 {
     public abstract class Repository<T> : IRepository<T> where T : class
     {
-        protected DbContext context;
-        public Repository(DbContext context)
+        protected AnimeDataDbContext context;
+        public Repository(AnimeDataDbContext context)
         {
             this.context = context;
         }

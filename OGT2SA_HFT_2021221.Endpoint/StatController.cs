@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OGT2SA_HFT_2021221.Endpoint
 {
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class StatController : ControllerBase
     {

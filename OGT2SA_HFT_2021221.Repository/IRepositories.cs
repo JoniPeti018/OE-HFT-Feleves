@@ -19,7 +19,7 @@ namespace OGT2SA_HFT_2021221.Repository
         //read
         Anime ReadAnime(int anime_id);
         //readall
-        HashSet<Anime> ReadAllAnime();
+        IQueryable<Anime> ReadAllAnime();
         //update
         void UpdateAnime(int anime_id, int studio_id, string anime_name, string type, string aired, string source);
         //delete
@@ -32,7 +32,7 @@ namespace OGT2SA_HFT_2021221.Repository
         //read
         Character ReadCharacter(int character_id);
         //readall
-        HashSet<Character> ReadAllCharacter();
+        IQueryable<Character> ReadAllCharacter();
         //update
         void UpdateCharacter(int character_id, int anime_id, int studio_id, string main_character, string main_voice, string support_character, string support_voice);
         //delete
@@ -45,7 +45,7 @@ namespace OGT2SA_HFT_2021221.Repository
         //read
         Studio ReadStudio(int studio_id);
         //readall
-        HashSet<Studio> ReadAllStudio();
+        IQueryable<Studio> ReadAllStudio();
         //update
         void UpdateStudio(int studio_id, string founded, string studio_name, string founder, string headquarters);
         //delete

@@ -9,7 +9,7 @@ namespace OGT2SA_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
-            AnimeDataDbContext context = new AnimeDataDbContext();
+            /*AnimeDataDbContext context = new AnimeDataDbContext();
             
             AnimeRepository animeRepository = new AnimeRepository(context);
             CharacterRepository characterRepository = new CharacterRepository(context);
@@ -20,7 +20,7 @@ namespace OGT2SA_HFT_2021221.Client
             StudioLogic studioLogic = new StudioLogic(studioRepository);
 
             var q1 = animeLogic.AnimesWhereCharacterName("Shiba Tatsuya");
-            var q2 = animeLogic.AnimeNameCharacterNameWhereSource("Light Novel");
+            var q2 = animeLogic.AnimeNameCharacterNameWhereSource("Light Novel");*/
             
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OGT2SA_HFT_2021221.Data;
 using OGT2SA_HFT_2021221.Models;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace OGT2SA_HFT_2021221.Repository
 {
     public class AnimeRepository : Repository<Anime>, IAnimeRepository
     {
-        public AnimeRepository(DbContext context) : base(context)
+        public AnimeRepository(AnimeDataDbContext context) : base(context)
         {
         }
         public override Anime GetOne(int id)
@@ -30,9 +31,9 @@ namespace OGT2SA_HFT_2021221.Repository
             context.SaveChanges();
         }
 
-        public HashSet<Anime> ReadAllAnime()
+        public IQueryable<Anime> ReadAllAnime()
         {
-            return (HashSet<Anime>)GetAll();
+            return GetAll();
         }
 
         public Anime ReadAnime(int anime_id)

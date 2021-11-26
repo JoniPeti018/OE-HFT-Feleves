@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OGT2SA_HFT_2021221.Data;
 using OGT2SA_HFT_2021221.Models;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace OGT2SA_HFT_2021221.Repository
 {
     public class CharacterRepository : Repository<Character>, ICharacterRepository
     {
-        public CharacterRepository(DbContext context) : base(context)
+        public CharacterRepository(AnimeDataDbContext context) : base(context)
         {
         }
         public override Character GetOne(int id)
@@ -31,9 +32,9 @@ namespace OGT2SA_HFT_2021221.Repository
             context.SaveChanges();
         }
 
-        public HashSet<Character> ReadAllCharacter()
+        public IQueryable<Character> ReadAllCharacter()
         {
-            return (HashSet<Character>)GetAll();
+            return GetAll();
         }
 
         public Character ReadCharacter(int character_id)

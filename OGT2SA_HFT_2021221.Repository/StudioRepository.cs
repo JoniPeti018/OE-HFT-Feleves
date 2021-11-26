@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OGT2SA_HFT_2021221.Data;
 using OGT2SA_HFT_2021221.Models;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace OGT2SA_HFT_2021221.Repository
 {
     public class StudioRepository : Repository<Studio>, IStudioRepository
     {
-        public StudioRepository(DbContext context) : base(context)
+        public StudioRepository(AnimeDataDbContext context) : base(context)
         {
         }
         public override Studio GetOne(int id)
@@ -30,9 +31,9 @@ namespace OGT2SA_HFT_2021221.Repository
             context.SaveChanges();
         }
 
-        public HashSet<Studio> ReadAllStudio()
+        public IQueryable<Studio> ReadAllStudio()
         {
-            return (HashSet<Studio>)GetAll();
+            return GetAll();
         }
 
         public Studio ReadStudio(int studio_id)
