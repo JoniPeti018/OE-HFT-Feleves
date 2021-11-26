@@ -86,9 +86,13 @@ namespace OGT2SA_HFT_2021221.Logic
             var q1 = from x in characterRepository.GetAll()
                      where x.main_character == name
                      select x.anime_id;
+            List<int> helper = q1.ToList();
             var q2 = from x in animeRepository.GetAll()
-                     where q1.Contains(x.anime_id)
+                     where helper.Contains(x.anime_id)
                      select x.anime_name;
+            /*var q3 = from x in characterRepository.GetAll()
+                     where x.main_character == name
+                     select x.Animes.anime_name;*/
             List<string> Animes = new List<string>();
             foreach (var item in q2)
             {
@@ -102,8 +106,9 @@ namespace OGT2SA_HFT_2021221.Logic
             var q1 = from x in animeRepository.GetAll()
                      where x.anime_name == name
                      select x.studio_id;
+            List<int> helper = q1.ToList();
             var q2 = from x in studioRepository.GetAll()
-                     where q1.Contains(x.studio_id)
+                     where helper.Contains(x.studio_id)
                      select x.studio_name;
             List<string> Studios = new List<string>();
             foreach (var item in q2)
@@ -115,12 +120,33 @@ namespace OGT2SA_HFT_2021221.Logic
         public IEnumerable<KeyValuePair<string, string>> AnimeNameCharacterNameWhereSource(string source)
         {
             //Írjuk ki annak az Animének a nevét és foszereplojenek a nevét, ahol az anime forrása: Light Novel
-            var q1 = from x in characterRepository.GetAll()
+            /*var q1 = from x in characterRepository.GetAll()
                      join y in animeRepository.GetAll() on x.anime_id equals y.anime_id
                      let joineditem = new { y.anime_name, x.main_character, y.source }
                      where joineditem.source == source
-                     select new KeyValuePair<string, string>(joineditem.anime_name, joineditem.main_character);
-            return q1;
+                     select new KeyValuePair<string, string>(joineditem.anime_name, joineditem.main_character);*/
+            var q2 = from x in animeRepository.GetAll()
+                     where x.source == source
+                     select new KeyValuePair<string, int>( x.anime_name, x.anime_id );
+            List<KeyValuePair<string, int>> helper = new List<KeyValuePair<string, int>>();
+            foreach (var item in q2)
+            {
+                helper.Add(item);
+            }
+            var q3 = from x in characterRepository.GetAll()
+                     select new KeyValuePair<string, int>(x.main_character, x.anime_id);
+            List<KeyValuePair<string, string>> helper2 = new List<KeyValuePair<string, string>>();
+            foreach (var item in helper)
+            {
+                foreach (var item2 in q3)
+                {
+                    if (item.Value == item2.Value)
+                    {
+                        helper2.Add(new KeyValuePair<string, string>(item.Key, item2.Key));
+                    }
+                }
+            }
+            return helper2;
         }
         public IEnumerable<string> CharacterNameWhereStudio(string studio)
         {
@@ -128,8 +154,9 @@ namespace OGT2SA_HFT_2021221.Logic
             var q1 = from x in studioRepository.GetAll()
                      where x.studio_name == studio
                      select x.studio_id;
+            List<int> helper = q1.ToList();
             var q2 = from x in characterRepository.GetAll()
-                     where q1.Contains(x.studio_id)
+                     where helper.Contains(x.studio_id)
                      select x.main_character;
             List<string> Characters = new List<string>();
             foreach (var item in q2)
@@ -144,8 +171,9 @@ namespace OGT2SA_HFT_2021221.Logic
             var q1 = from x in studioRepository.GetAll()
                      where x.studio_name == studio
                      select x.studio_id;
+            List<int> helper = q1.ToList();
             var q2 = from x in animeRepository.GetAll()
-                     where q1.Contains(x.studio_id)
+                     where helper.Contains(x.studio_id)
                      select x.aired;
             List<string> Aired = new List<string>();
             foreach (var item in q2)

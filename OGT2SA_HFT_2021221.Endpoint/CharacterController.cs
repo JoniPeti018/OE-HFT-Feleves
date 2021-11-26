@@ -34,16 +34,16 @@ namespace OGT2SA_HFT_2021221.Endpoint
 
         // POST /brand
         [HttpPost]
-        public void Post([FromBody] int character_id, int anime_id, int studio_id, string main_character, string main_voice, string support_character, string support_voice)
+        public void Post([FromBody] Character character)
         {
-            characterLogic.CreateCharacter(character_id, anime_id, studio_id, main_character, main_voice, support_character, support_voice);
+            characterLogic.CreateCharacter(character.character_id, character.anime_id, character.studio_id, character.main_character, character.main_voice, character.support_character, character.support_voice);
         }
 
         // PUT /brand
         [HttpPut]
-        public void Put([FromBody] int character_id, int anime_id, int studio_id, string main_character, string main_voice, string support_character, string support_voice)
+        public void Put([FromBody] Character character)
         {
-            characterLogic.UpdateCharacter(character_id, anime_id, studio_id, main_character, main_voice, support_character, support_voice);
+            characterLogic.UpdateCharacter(character.character_id, character.anime_id, character.studio_id, character.main_character, character.main_voice, character.support_character, character.support_voice);
         }
 
         // DELETE /brand/5

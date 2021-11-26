@@ -34,16 +34,16 @@ namespace OGT2SA_HFT_2021221.Endpoint
 
         // POST /brand
         [HttpPost]
-        public void Post([FromBody] int studio_id, string founded, string studio_name, string founder, string headquarters)
+        public void Post([FromBody] Studio studio)
         {
-            studioLogic.CreateStudio(studio_id, founded, studio_name, founder, headquarters);
+            studioLogic.CreateStudio(studio.studio_id, studio.founded, studio.studio_name, studio.founder, studio.headquarters);
         }
 
         // PUT /brand
         [HttpPut]
-        public void Put([FromBody] int studio_id, string founded, string studio_name, string founder, string headquarters)
+        public void Put([FromBody] Studio studio)
         {
-            studioLogic.UpdateStudio(studio_id, founded, studio_name, founder, headquarters);
+            studioLogic.UpdateStudio(studio.studio_id, studio.founded, studio.studio_name, studio.founder, studio.headquarters);
         }
 
         // DELETE /brand/5
