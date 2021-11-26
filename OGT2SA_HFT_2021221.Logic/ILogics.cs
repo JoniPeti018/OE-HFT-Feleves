@@ -19,6 +19,11 @@ namespace OGT2SA_HFT_2021221.Logic
         void UpdateAnime(int anime_id, int studio_id, string anime_name, string type, string aired, string source);
         //delete
         void DeleteAnime(int anime_id);
+        public IEnumerable<string> AnimesWhereCharacterName(string name);
+        public IEnumerable<string> StudiosNameWhereAnimeName(string name);
+        public IEnumerable<KeyValuePair<string, string>> AnimeNameCharacterNameWhereSource(string source);
+        public IEnumerable<string> CharacterNameWhereStudio(string studio);
+        public IEnumerable<string> AiredWhereStudioName(string studio);
     }
     public interface ICharacterLogic
     {

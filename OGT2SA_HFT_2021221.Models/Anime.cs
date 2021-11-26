@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace OGT2SA_HFT_2021221.Models
 {
@@ -21,8 +22,10 @@ namespace OGT2SA_HFT_2021221.Models
         [Required]
         public string source { get; set; }
         [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<Character> Characters { get; set; }
         [NotMapped]
+        [JsonIgnore]
         public virtual Studio Studios { get; set; }
         public Anime()
         {

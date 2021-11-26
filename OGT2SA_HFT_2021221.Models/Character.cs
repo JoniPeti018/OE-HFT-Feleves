@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace OGT2SA_HFT_2021221.Models
 {
@@ -26,8 +27,10 @@ namespace OGT2SA_HFT_2021221.Models
         [Required]
         public string support_voice { get; set; }
         [NotMapped]
+        [JsonIgnore]
         public virtual Anime Animes { get; set; }
         [NotMapped]
+        [JsonIgnore]
         public virtual Studio Studios { get; set; }
     }
 }
