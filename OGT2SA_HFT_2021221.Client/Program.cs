@@ -21,7 +21,7 @@ namespace OGT2SA_HFT_2021221.Client
 
             var q1 = animeLogic.AnimesWhereCharacterName("Shiba Tatsuya");
             var q2 = animeLogic.AnimeNameCharacterNameWhereSource("Light Novel");
-            ;
+            
         }
     }
 }
