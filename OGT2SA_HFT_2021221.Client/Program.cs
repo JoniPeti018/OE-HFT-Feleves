@@ -108,7 +108,6 @@ namespace OGT2SA_HFT_2021221.Client
 
             var airedWhereStudioName = rest.Get<string>("stat/AiredWhereStudioName?studio=P.A. Works");
 
-            ;
         }
     }
 }
