@@ -68,8 +68,22 @@ namespace OGT2SA_HFT_2021221.Logic
 
         public void UpdateStudio(int studio_id, string founded, string studio_name, string founder, string headquarters)
         {
-            DeleteStudio(studio_id);
-            CreateStudio(studio_id, founded, studio_name, founder, headquarters);
+            if (String.IsNullOrEmpty(studio_id.ToString()) || founded == null || studio_name == null || founder == null || headquarters == null)
+            {
+                throw new ArgumentException("Value cannot be null!");
+            }
+            else
+            {
+                try
+                {
+                    studioRepository.UpdateStudio(studio_id, founded, studio_name, founder, headquarters);
+                }
+                catch (Exception)
+                {
+
+                    throw new KeyNotFoundException();
+                }
+            }
         }
     }
 }

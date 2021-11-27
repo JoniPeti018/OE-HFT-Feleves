@@ -44,8 +44,13 @@ namespace OGT2SA_HFT_2021221.Repository
 
         public void UpdateCharacter(int character_id, int anime_id, int studio_id, string main_character, string main_voice, string support_character, string support_voice)
         {
-            DeleteCharacter(character_id);
-            CreateCharacter(character_id, anime_id, studio_id, main_character, main_voice, support_character, support_voice);
+            var update = ReadCharacter(character_id);
+            update.anime_id = studio_id;
+            update.studio_id = studio_id;
+            update.main_character = main_character;
+            update.main_voice = main_voice;
+            update.support_character = support_character;
+            update.support_voice = support_voice;
             context.SaveChanges();
         }
     }

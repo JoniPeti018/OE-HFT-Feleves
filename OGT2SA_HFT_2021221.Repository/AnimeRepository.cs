@@ -43,8 +43,12 @@ namespace OGT2SA_HFT_2021221.Repository
 
         public void UpdateAnime(int anime_id, int studio_id, string anime_name, string type, string aired, string source)
         {
-            DeleteAnime(anime_id);
-            CreateAnime(anime_id, studio_id, anime_name, type, aired, source);
+            var update = ReadAnime(anime_id);
+            update.studio_id = studio_id;
+            update.anime_name = anime_name;
+            update.type = type;
+            update.aired = aired;
+            update.source = source;
             context.SaveChanges();
         }
     }

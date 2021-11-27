@@ -43,8 +43,11 @@ namespace OGT2SA_HFT_2021221.Repository
 
         public void UpdateStudio(int studio_id, string founded, string studio_name, string founder, string headquarters)
         {
-            DeleteStudio(studio_id);
-            CreateStudio(studio_id, founded, studio_name, founder, headquarters);
+            var update = ReadStudio(studio_id);
+            update.founded = founded;
+            update.studio_name = studio_name;
+            update.founder = founder;
+            update.headquarters = headquarters;
             context.SaveChanges();
         }
     }

@@ -76,8 +76,23 @@ namespace OGT2SA_HFT_2021221.Logic
 
         public void UpdateAnime(int anime_id, int studio_id, string anime_name, string type, string aired, string source)
         {
-            DeleteAnime(anime_id);
-            CreateAnime(anime_id, studio_id, anime_name, type, aired, source);
+            if (String.IsNullOrEmpty(anime_id.ToString()) || anime_name == null || type == null || aired == null || source == null || String.IsNullOrEmpty(studio_id.ToString()))
+            {
+                throw new ArgumentException("Value cannot be null!");
+            }
+            else
+            {
+                try
+                {
+                    ReadAnime(anime_id);
+                    animeRepository.UpdateAnime(anime_id, studio_id, anime_name, type, aired, source);
+                }
+                catch (Exception)
+                {
+
+                    throw new KeyNotFoundException();
+                }
+            }
         }
 
         public IEnumerable<string> AnimesWhereCharacterName(string name)

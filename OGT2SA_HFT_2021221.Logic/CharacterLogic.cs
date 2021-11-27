@@ -69,8 +69,23 @@ namespace OGT2SA_HFT_2021221.Logic
 
         public void UpdateCharacter(int character_id, int anime_id, int studio_id, string main_character, string main_voice, string support_character, string support_voice)
         {
-            DeleteCharacter(character_id);
-            CreateCharacter(character_id, anime_id, studio_id, main_character, main_voice, support_character, support_voice);
+            if (String.IsNullOrEmpty(anime_id.ToString()) || String.IsNullOrEmpty(studio_id.ToString()) || String.IsNullOrEmpty(character_id.ToString()) || main_character == null || main_voice == null || support_character == null || support_voice == null)
+            {
+                throw new ArgumentException("Value cannot be null!");
+            }
+            else
+            {
+                try
+                {
+                    characterRepository.UpdateCharacter(character_id, anime_id, studio_id, main_character, main_voice, support_character, support_voice);
+                }
+                catch (Exception)
+                {
+
+                    throw new KeyNotFoundException();
+                }
+            }
+
         }
     }
 }

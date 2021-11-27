@@ -64,6 +64,9 @@ namespace OGT2SA_HFT_2021221.Data
             Anime angelbeatsspecials = new Anime() { anime_id = 9, anime_name = "Angel Beats! Specials", type = "Special", aired = "2010.12.22", source = "Original", studio_id = 3 };
             Anime mahoukakoukou = new Anime() { anime_id = 10, anime_name = "Mahouka Koukou no Rettousei", type = "TV", aired = "2014.04.06", source = "Light Novel", studio_id = 1 };
             Anime killlakill = new Anime() { anime_id = 11, anime_name = "Kill La Kill", type = "TV", aired = "2013.10.04", source = "Original", studio_id = 2 };
+            //Updateable / Deleteable animes
+            Anime updateableanime = new Anime() { anime_id = 12, anime_name = "updateableanime", type = "updateableanime", aired = "updateableanime", source = "updateableanime", studio_id = 2 };
+            Anime deleteableanime = new Anime() { anime_id = 13, anime_name = "delateableanime", type = "delateableanime", aired = "delateableanime", source = "delateableanime", studio_id = 2 };
             //Characters
             Character vladilena = new Character() { anime_id = 1, character_id = 1, main_character = "Milizé Vladilena", main_voice = "Hasegawa Ikumi", studio_id = 5, support_character = "Emma Anju", support_voice = "Hayami Saori" };
             Character kanade = new Character() { anime_id = 2, character_id = 2, main_character = "Tachibana Kanade", main_voice = "Hanazawa Kana", studio_id = 3, support_character = "Naoi Ayato", support_voice = "Ogata Megumi" };
@@ -76,6 +79,9 @@ namespace OGT2SA_HFT_2021221.Data
             Character ryuuko = new Character() { anime_id = 11, character_id = 9, main_character = "Matoi Ryuuko", main_voice = "Koshimizu Ami", studio_id = 2, support_character = "Jakuzure Nonon", support_voice = "Shintani Mayumi" };
             Character rin = new Character() { anime_id = 8, character_id = 10, main_character = "Toosaka Rin", main_voice = "Ueda Kana", studio_id = 8, support_character = "Archer", support_voice = "Suwabe Junichi" };
             Character matoiryuuko = new Character() { anime_id = 6, character_id = 11, main_character = "Matoi Ryuuko", main_voice = "Koshimizu Ami", studio_id = 2, support_character = "Jakuzure Nonon", support_voice = "Shintani Mayumi" };
+            //Updateable / Deleteable characters
+            Character updateablecharacter = new Character() { anime_id = 8, character_id = 14, main_character = "updateablecharacter", main_voice = "updateablecharacter", studio_id = 8, support_character = "updateablecharacter", support_voice = "updateablecharacter" };
+            Character deleteablecharacter = new Character() { anime_id = 6, character_id = 13, main_character = "delateableanime", main_voice = "delateableanime", studio_id = 4, support_character = "delateableanime", support_voice = "delateableanime" };
             //Studios
             Studio madhouse = new Studio() { studio_id = 1, studio_name = "Madhouse", founded = "1972.10.17", founder = "Masao Maruyama", headquarters = "Nakano" };
             Studio trigger = new Studio() { studio_id = 2, studio_name = "Trigger", founded = "2011.08.22", founder = "Hiroyuki Imaishi", headquarters = "Tokyo" };
@@ -85,10 +91,13 @@ namespace OGT2SA_HFT_2021221.Data
             Studio studiobind = new Studio() { studio_id = 6, studio_name = "Studio Bind", founded = "2018.11.01", founder = "Toshiya Otomo", headquarters = "Suginami" };
             Studio productiopnsig = new Studio() { studio_id = 7, studio_name = "Productions I.G", founded = "1987.12.15", founder = "Isikava Micuhisza", headquarters = "Kokubundzsi" };
             Studio lerche = new Studio() { studio_id = 8, studio_name = "Lerche", founded = "2011.01.01", founder = "Seiji Kishi", headquarters = "Nerima" };
+            //Updateable / Deleteable studios
+            Studio updateablestudio = new Studio() { studio_id = 11, studio_name = "updateablestudio", founded = "updateablestudio", founder = "updateablestudio", headquarters = "updateablestudio" };
+            Studio deleteablestudio = new Studio() { studio_id = 15, studio_name = "delateablestudio", founded = "delateablestudio", founder = "delateablestudio", headquarters = "delateablestudio" };
 
-            modelBuilder.Entity<Anime>().HasData(eightysix, angelbeats, guiltycrown, mushokutensei, swordartonline, killlakillspecials, kizumonogatari, carnivalphantasm, angelbeatsspecials, mahoukakoukou, killlakill );
-            modelBuilder.Entity<Character>().HasData(vladilena, kanade, kazuto, inori, koyomi, eris, yuzuru, tatsuya, ryuuko, rin, matoiryuuko);
-            modelBuilder.Entity<Studio>().HasData(madhouse, trigger, paworks, shaft, a1pictures, studiobind, productiopnsig, lerche);
+            modelBuilder.Entity<Anime>().HasData(eightysix, angelbeats, guiltycrown, mushokutensei, swordartonline, killlakillspecials, kizumonogatari, carnivalphantasm, angelbeatsspecials, mahoukakoukou, killlakill, updateableanime, deleteableanime );
+            modelBuilder.Entity<Character>().HasData(vladilena, kanade, kazuto, inori, koyomi, eris, yuzuru, tatsuya, ryuuko, rin, matoiryuuko, updateablecharacter, deleteablecharacter);
+            modelBuilder.Entity<Studio>().HasData(madhouse, trigger, paworks, shaft, a1pictures, studiobind, productiopnsig, lerche, updateablestudio, deleteablestudio);
         }
         
     }
