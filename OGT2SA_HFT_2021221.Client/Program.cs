@@ -97,12 +97,7 @@ namespace OGT2SA_HFT_2021221.Client
             var studio = rest.GetSingle<Studio>("studio/15");
             rest.Delete(15, "studio");
             var studios = rest.Get<Studio>("studio");*/
-            #endregion
-            bool showMenu = true;
-            while (showMenu)
-            {
-                showMenu = Menu();
-            }
+
             //---NonCRUD methods---
 
             //var animesWhereCharacterName = rest.Get<string>("stat/AnimesWhereCharacterName?name=Tachibana Kanade");
@@ -114,6 +109,12 @@ namespace OGT2SA_HFT_2021221.Client
             //var characterNameWhereStudio = rest.Get<string>("stat/CharacterNameWhereStudio?studio=Trigger");
 
             //var airedWhereStudioName = rest.Get<string>("stat/AiredWhereStudioName?studio=P.A. Works");
+            #endregion
+            bool showMenu = true;
+            while (showMenu)
+            {
+                showMenu = Menu();
+            }
 
         }
         private static bool Menu()
@@ -174,7 +175,8 @@ namespace OGT2SA_HFT_2021221.Client
             Console.WriteLine("Character name:");
             string characterName = Console.ReadLine();
             rest.Get<string>("stat/AnimesWhereCharacterName?name="+characterName);
-            Console.WriteLine(rest.Get<string>($"stat/AnimesWhereCharacterName?name={characterName}"));
+            var writeCharacter = rest.Get<string>($"stat/AnimesWhereCharacterName?name={characterName}");
+            Console.WriteLine(string.Join(",", writeCharacter));
             Console.ReadKey();
             Menu();
         }
@@ -185,7 +187,8 @@ namespace OGT2SA_HFT_2021221.Client
             Console.WriteLine("Anime name:");
             string animeName = Console.ReadLine();
             rest.Get<string>("stat/StudiosNameWhereAnimeName?name="+animeName);
-            Console.WriteLine(rest.Get<string>("stat/StudiosNameWhereAnimeName?name=" + animeName));
+            var writeAnime = rest.Get<string>("stat/StudiosNameWhereAnimeName?name=" + animeName);
+            Console.WriteLine(string.Join(",", writeAnime));
             Console.ReadKey();
             Menu();
         }
@@ -196,7 +199,8 @@ namespace OGT2SA_HFT_2021221.Client
             Console.WriteLine("Source name:");
             string sourceName = Console.ReadLine();
             rest.Get<KeyValuePair<string, string>>("stat/AnimeNameCharacterNameWhereSource?source="+sourceName);
-            Console.WriteLine(rest.Get<KeyValuePair<string, string>>("stat/AnimeNameCharacterNameWhereSource?source=" + sourceName));
+            var writeSource = rest.Get<KeyValuePair<string, string>>("stat/AnimeNameCharacterNameWhereSource?source=" + sourceName);
+            Console.WriteLine(string.Join(",", writeSource));
             Console.ReadKey();
             Menu();
         }
@@ -207,7 +211,8 @@ namespace OGT2SA_HFT_2021221.Client
             Console.WriteLine("Studio name:");
             string studioName = Console.ReadLine();
             rest.Get<string>("stat/CharacterNameWhereStudio?studio="+studioName);
-            Console.WriteLine(rest.Get<string>("stat/CharacterNameWhereStudio?studio=" + studioName));
+            var writeStudio = rest.Get<string>("stat/CharacterNameWhereStudio?studio=" + studioName);
+            Console.WriteLine(string.Join(",", writeStudio));
             Console.ReadKey();
             Menu();
         }
@@ -218,7 +223,8 @@ namespace OGT2SA_HFT_2021221.Client
             Console.WriteLine("Studio name:");
             string studioName = Console.ReadLine();
             rest.Get<string>("stat/AiredWhereStudioName?studio="+studioName);
-            Console.WriteLine(rest.Get<string>("stat/AiredWhereStudioName?studio=" + studioName));
+            var writeStudio = rest.Get<string>("stat/AiredWhereStudioName?studio=" + studioName);
+            Console.WriteLine(string.Join(",", writeStudio));
             Console.ReadKey();
             Menu();
         }
@@ -226,7 +232,7 @@ namespace OGT2SA_HFT_2021221.Client
         {
             Console.Clear();
             RestService rest = new RestService("http://localhost:9346");
-            Console.WriteLine("What type of element do you want to insert? (artist,track,album)");
+            Console.WriteLine("What type of element do you want to insert? (anime,character,studio)");
             string table = Console.ReadLine();
             if (table == "anime" || table == "character" || table == "studio")
             {
@@ -410,17 +416,30 @@ namespace OGT2SA_HFT_2021221.Client
                 switch (table)
                 {
                     case "anime":
-                        var tempArtist = rest.Get<Anime>("anime");
+                        var tempAnime = rest.Get<Anime>("anime");
+                        foreach (var item in tempAnime)
+                        {
+                            Console.WriteLine($"{item.anime_id} - {item.anime_name} - {item.type} - {item.aired} - {item.source} - {item.studio_id}\n");
+                        }
                         Console.ReadKey();
                         Menu();
                         break;
                     case "character":
-                        var temparAlbum = rest.Get<Character>("character");
+                        var tempCharacter = rest.Get<Character>("character");
+                        foreach (var item in tempCharacter) 
+                        {
+                            Console.WriteLine($"{item.anime_id} - {item.character_id} - {item.studio_id} - {item.main_character} - {item.main_voice} - {item.support_character} - {item.support_voice}\n");
+                        }
                         Console.ReadKey();
                         Menu();
                         break;
                     case "studio":
-                        var tempTrack = rest.Get<Studio>("studio");
+                        var tempStudio = rest.Get<Studio>("studio");
+                        foreach (var item in tempStudio) 
+                        {
+                            Console.WriteLine($"{item.studio_id} - {item.studio_name} - {item.founded} - {item.founder} - {item.headquarters}\n");
+                        }
+                        Console.WriteLine(string.Join(",", tempStudio));
                         Console.ReadKey();
                         Menu();
                         break;
