@@ -13,14 +13,14 @@ namespace OGT2SA_HFT_2021221.WPFClient
 {
     public class MainWindowViewModel
     {
-        public RestCollection<Anime> Animes { get; set; }
+        /*public RestCollection<Anime> Animes { get; set; }
         public RestCollection<Character> Characters { get; set; }
         public RestCollection<Studio> Studios { get; set; }
         private int SelectetTable { get; set; }
 
         public ICommand CreateCommand { get; set; }
         public ICommand UpdateCommand { get; set; }
-        public ICommand DeleteCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }*/
 
         public ICommand AnimeCommand { get; set; }
         public ICommand CharacterCommand { get; set; }
@@ -39,18 +39,17 @@ namespace OGT2SA_HFT_2021221.WPFClient
         {
             if (!IsInDesignMode)
             {
-                SelectetTable = 0;
                 AnimeCommand = new RelayCommand(() =>
                 {
-                    SelectetTable = 0;
+                    new AmineWindow().ShowDialog();
                 });
                 CharacterCommand = new RelayCommand(() =>
                 {
-                    SelectetTable = 1;
+                    new CharacterWindow().ShowDialog();
                 });
                 StudioCommand = new RelayCommand(() =>
                 {
-                    SelectetTable = 2;
+                    new StudioWindow().ShowDialog();
                 });
                 
                 //Animes = new RestCollection<Anime>("http://localhost:9346/", "anime");
