@@ -6,7 +6,38 @@
         xmlns:local="clr-namespace:OGT2SA_HFT_2021221.WPFClient"
         mc:Ignorable="d"
         Title="StudioWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:StudioWindowViewModel/>
+    </Window.DataContext>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1" >
+            <Button Content="Create" Command="{Binding CreateCommand}" Margin="10" Padding="10"/>
+            <Button Content="Delete" Command="{Binding DeleteCommand}" Margin="10" Padding="10"/>
+            <Button Content="Update" Command="{Binding UpdateCommand}" Margin="10" Padding="10"/>
+        </StackPanel>
+        <ListBox Grid.Column="0" ItemsSource="{Binding StudioCollection}" SelectedItem="{Binding SelectedStudio}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding studio_name}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="2">
+            <Label Content="StudioID" Background="AliceBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedStudio.studio_id}" Padding="10"/>
+            <Label Content="Studio name" Background="AliceBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedStudio.studio_name}" Padding="10"/>
+            <Label Content="Founded" Background="AliceBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedStudio.founded}" Padding="10"/>
+            <Label Content="Founder" Background="AliceBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedStudio.founder}" Padding="10"/>
+            <Label Content="Headquarters" Background="AliceBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedStudio.headquarters}" Padding="10"/>
+        </StackPanel>
     </Grid>
 </Window>

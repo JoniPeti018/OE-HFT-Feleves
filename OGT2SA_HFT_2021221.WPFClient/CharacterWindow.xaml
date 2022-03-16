@@ -6,7 +6,42 @@
         xmlns:local="clr-namespace:OGT2SA_HFT_2021221.WPFClient"
         mc:Ignorable="d"
         Title="CharacterWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:CharacterWindowViewModel/>
+    </Window.DataContext>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1" >
+            <Button Content="Create" Command="{Binding CreateCommand}" Margin="10" Padding="10"/>
+            <Button Content="Delete" Command="{Binding DeleteCommand}" Margin="10" Padding="10"/>
+            <Button Content="Update" Command="{Binding UpdateCommand}" Margin="10" Padding="10"/>
+        </StackPanel>
+        <ListBox Grid.Column="0" ItemsSource="{Binding CharacterCollection}" SelectedItem="{Binding SelectedCharacter}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding main_character}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="2">
+            <Label Content="AnimeID" Background="AliceBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedCharacter.anime_id}" Padding="10"/>
+            <Label Content="CharacterID" Background="AliceBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedCharacter.character_id}" Padding="10"/>
+            <Label Content="Main character" Background="AliceBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedCharacter.main_character}" Padding="10"/>
+            <Label Content="Main character voice" Background="AliceBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedCharacter.main_voice}" Padding="10"/>
+            <Label Content="StudioID" Background="AliceBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedCharacter.studio_id}" Padding="10"/>
+            <Label Content="Support character" Background="AliceBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedCharacter.support_character}" Padding="10"/>
+            <Label Content="Support character voice" Background="AliceBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedCharacter.support_voice}" Padding="10"/>
+        </StackPanel>
     </Grid>
 </Window>

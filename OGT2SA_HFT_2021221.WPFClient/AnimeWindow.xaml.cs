@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace OGT2SA_HFT_2021221.WPFClient
 {
     /// <summary>
-    /// Interaction logic for AmineWindow.xaml
+    /// Interaction logic for AnimeWindow.xaml
     /// </summary>
-    public partial class AmineWindow : Window
+    public partial class AnimeWindow : Window
     {
-        public AmineWindow()
+        public AnimeWindow()
         {
             InitializeComponent();
         }

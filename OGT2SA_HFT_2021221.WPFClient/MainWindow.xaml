@@ -9,11 +9,42 @@
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
-    <Grid Background="CadetBlue">
-        <StackPanel Background="Azure" VerticalAlignment="Center">
-            <Button Command="{Binding AnimeCommand}" Content="Animes" Padding="10" Margin="10" FontSize="30" />
-            <Button Command="{Binding CharacterCommand}" Content="Characters" Padding="10" Margin="10" FontSize="30" />
-            <Button Command="{Binding StudioCommand}" Content="Studios" Padding="10" Margin="10" FontSize="30"/>
-        </StackPanel>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="13*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Database content" FontSize="16"/>
+            <ListBox Grid.Row="1">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <Label Content="Tables" FontSize="16" HorizontalAlignment="Center"/>
+                <Button Content="Animes" Padding="10" FontSize="14" Background="LightGreen" Command="{Binding AnimeCommand}"/>
+                <Button Content="Characters" Padding="10" FontSize="14" Background="LightGreen" Command="{Binding CharacterCommand}"/>
+                <Button Content="Studios" Padding="10" FontSize="14" Background="LightGreen" Command="{Binding StudioCommand}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <Label Content="Operations" FontSize="16" HorizontalAlignment="Center"/>
+                <Button Content="Create" Padding="10" FontSize="14" Background="LightBlue" Command="{Binding CreateCommand}"/>
+                <Button Content="Update" Padding="10" FontSize="14" Background="LightBlue" Command="{Binding UpdateCommand}"/>
+                <Button Content="Delete" Padding="10" FontSize="14" Background="LightBlue" Command="{Binding DeleteCommand}"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
