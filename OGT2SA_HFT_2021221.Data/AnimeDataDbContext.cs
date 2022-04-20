@@ -34,7 +34,7 @@ namespace OGT2SA_HFT_2021221.Data
                 .HasOne(anime => anime.Studios)
                 .WithMany(studios => studios.Animes)
                 .HasForeignKey(anime => anime.studio_id)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.SetNull);
             });
             modelBuilder.Entity<Character>(entity =>
             {
@@ -42,7 +42,7 @@ namespace OGT2SA_HFT_2021221.Data
                 .HasOne(character => character.Studios)
                 .WithMany(studios => studios.Characters)
                 .HasForeignKey(character => character.studio_id)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.SetNull);
             });
             modelBuilder.Entity<Character>(entity =>
             {
@@ -50,7 +50,7 @@ namespace OGT2SA_HFT_2021221.Data
                 .HasOne(character => character.Animes)
                 .WithMany(animes => animes.Characters)
                 .HasForeignKey(character => character.anime_id)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.SetNull);
             });
 
             //---Animes---

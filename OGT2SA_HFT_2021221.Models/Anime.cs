@@ -12,7 +12,7 @@ namespace OGT2SA_HFT_2021221.Models
         [Key]
         public int anime_id { get; set; }
         [ForeignKey(nameof(Studio))]
-        public int studio_id { get; set; }
+        public int? studio_id { get; set; }
         [Required]
         public string anime_name { get; set; }
         [Required]

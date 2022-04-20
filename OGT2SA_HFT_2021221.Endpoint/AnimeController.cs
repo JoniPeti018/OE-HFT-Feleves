@@ -40,7 +40,7 @@ namespace OGT2SA_HFT_2021221.Endpoint
         [HttpPost]
         public void Post([FromBody] Anime anime)
         {
-            animeLogic.CreateAnime(anime.anime_id, anime.studio_id, anime.anime_name, anime.type, anime.aired, anime.source);
+            animeLogic.CreateAnime(anime.anime_id, (int)anime.studio_id, anime.anime_name, anime.type, anime.aired, anime.source);
             hub.Clients.All.SendAsync("AnimeCreated", anime);
         }
 
@@ -48,7 +48,7 @@ namespace OGT2SA_HFT_2021221.Endpoint
         [HttpPut]
         public void Put([FromBody] Anime anime)
         {
-            animeLogic.UpdateAnime(anime.anime_id, anime.studio_id, anime.anime_name, anime.type, anime.aired, anime.source);
+            animeLogic.UpdateAnime(anime.anime_id, (int)anime.studio_id, anime.anime_name, anime.type, anime.aired, anime.source);
             hub.Clients.All.SendAsync("AnimeUpdated", anime);
         }
 

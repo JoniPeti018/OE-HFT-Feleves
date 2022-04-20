@@ -40,7 +40,7 @@ namespace OGT2SA_HFT_2021221.Endpoint
         [HttpPost]
         public void Post([FromBody] Character character)
         {
-            characterLogic.CreateCharacter(character.character_id, character.anime_id, character.studio_id, character.main_character, character.main_voice, character.support_character, character.support_voice);
+            characterLogic.CreateCharacter(character.character_id, (int)character.anime_id, (int)character.studio_id, character.main_character, character.main_voice, character.support_character, character.support_voice);
             hub.Clients.All.SendAsync("CharacterCreated", character);
         }
 
@@ -48,7 +48,7 @@ namespace OGT2SA_HFT_2021221.Endpoint
         [HttpPut]
         public void Put([FromBody] Character character)
         {
-            characterLogic.UpdateCharacter(character.character_id, character.anime_id, character.studio_id, character.main_character, character.main_voice, character.support_character, character.support_voice);
+            characterLogic.UpdateCharacter(character.character_id, (int)character.anime_id, (int)character.studio_id, character.main_character, character.main_voice, character.support_character, character.support_voice);
             hub.Clients.All.SendAsync("CharacterUpdated", character);
         }
 
