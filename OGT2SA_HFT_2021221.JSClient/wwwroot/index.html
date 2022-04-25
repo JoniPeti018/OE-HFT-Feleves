@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Js Client</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Studio Page</h1>
+
+    <div id="studioForm">
+        <label>Studio Name</label>
+        <input type="text" id="studioname" />
+        <button type="button" onclick="create();">Add Studio</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Studio Name</th>
+                <th>Founded</th>
+                <th>Founder</th>
+                <th>Headquarters</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
