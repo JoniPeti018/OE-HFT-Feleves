@@ -55,7 +55,7 @@ namespace OGT2SA_HFT_2021221.WPFClient
         {
             if (!IsInDesignMode)
             {
-                CharacterCollection = new RestCollection<Character>("http://localhost:9346/", "character");
+                CharacterCollection = new RestCollection<Character>("http://localhost:9346/", "character", "hub");
 
                 CreateCommand = new RelayCommand(() =>
                 {
@@ -68,6 +68,8 @@ namespace OGT2SA_HFT_2021221.WPFClient
                         support_character = selectedCharacter.support_character,
                         support_voice = selectedCharacter.support_voice,
                     });
+                    System.Threading.Thread.Sleep(200);
+                    CharacterCollection.Update(SelectedCharacter);
                 });
 
                 UpdateCommand = new RelayCommand(() =>

@@ -52,7 +52,7 @@ namespace OGT2SA_HFT_2021221.WPFClient
         {
             if (!IsInDesignMode)
             {
-                StudioCollection = new RestCollection<Studio>("http://localhost:9346/", "studio");
+                StudioCollection = new RestCollection<Studio>("http://localhost:9346/", "studio", "hub");
 
                 CreateCommand = new RelayCommand(() =>
                 {
@@ -63,6 +63,8 @@ namespace OGT2SA_HFT_2021221.WPFClient
                        founder = selectedStudio.founder,
                        headquarters = selectedStudio.headquarters,
                     });
+                    System.Threading.Thread.Sleep(200);
+                    StudioCollection.Update(SelectedStudio);
                 });
 
                 UpdateCommand = new RelayCommand(() =>

@@ -38,7 +38,6 @@ namespace OGT2SA_HFT_2021221.Logic
                 {
                     animeRepository.CreateAnime(anime_id, studio_id, anime_name, type, aired, source);
                 }
-
             }
         }
 

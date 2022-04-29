@@ -40,16 +40,16 @@ namespace OGT2SA_HFT_2021221.Endpoint
         [HttpPost]
         public void Post([FromBody] Anime anime)
         {
-            animeLogic.CreateAnime(anime.anime_id, (int)anime.studio_id, anime.anime_name, anime.type, anime.aired, anime.source);
-            hub.Clients.All.SendAsync("AnimeCreated", anime);
+            this.animeLogic.CreateAnime(anime.anime_id, (int)anime.studio_id, anime.anime_name, anime.type, anime.aired, anime.source);
+            this.hub.Clients.All.SendAsync("AnimeCreated", anime);
         }
 
         // PUT /brand
         [HttpPut]
         public void Put([FromBody] Anime anime)
         {
-            animeLogic.UpdateAnime(anime.anime_id, (int)anime.studio_id, anime.anime_name, anime.type, anime.aired, anime.source);
-            hub.Clients.All.SendAsync("AnimeUpdated", anime);
+            this.animeLogic.UpdateAnime(anime.anime_id, (int)anime.studio_id, anime.anime_name, anime.type, anime.aired, anime.source);
+            this.hub.Clients.All.SendAsync("AnimeUpdated", anime);
         }
 
         // DELETE /brand/5
@@ -57,8 +57,8 @@ namespace OGT2SA_HFT_2021221.Endpoint
         public void Delete(int id)
         {
             var anime = this.animeLogic.ReadAnime(id);
-            animeLogic.DeleteAnime(id);
-            hub.Clients.All.SendAsync("AnimeDeleted", anime);
+            this.animeLogic.DeleteAnime(id);
+            this.hub.Clients.All.SendAsync("AnimeDeleted", anime);
         }
     }
 }

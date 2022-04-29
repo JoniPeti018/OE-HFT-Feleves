@@ -55,7 +55,7 @@ namespace OGT2SA_HFT_2021221.WPFClient
         {
             if (!IsInDesignMode)
             {
-                AnimeCollection = new RestCollection<Anime>("http://localhost:9346/", "anime");
+                AnimeCollection = new RestCollection<Anime>("http://localhost:9346/", "anime", "hub");
 
                 CreateCommand = new RelayCommand(() =>
                 {
@@ -65,8 +65,10 @@ namespace OGT2SA_HFT_2021221.WPFClient
                         type = selectedAnime.type,
                         aired = selectedAnime.aired,
                         source = selectedAnime.source,
-                        studio_id=selectedAnime.studio_id,
+                        studio_id = selectedAnime.studio_id,
                     });
+                    System.Threading.Thread.Sleep(200);
+                    AnimeCollection.Update(SelectedAnime);
                 });
 
                 UpdateCommand = new RelayCommand(() =>
